@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
 </head>
+
 <body>
     <header>
-        <h1>Login</h1>
+        <h1><?= $nom; ?></h1>
     </header>
     <aside>
         <ul>
-            <li>
-                <a href="?url=login">LOGIN</a>
-            </li>
             <li>
                 <a href="?url=register">REGISTER</a>
             </li>
@@ -24,12 +23,40 @@
         </ul>
     </aside>
     <main>
+
+        <?php if (isset($_COOKIE['errorAuth'])) : ?>
+            <p>Les dades introduides no son correctes.</p><br>
+        <?php endif ?>
+
+        <?php if (isset($_COOKIE['regCorrecte'])) : ?>
+            <p>T'has registrat correctament, ara inicia sessio.</p><br>
+        <?php endif ?>
+
+        <?php if (isset($_COOKIE['recorda'])) : ?>
+            <p><?= $_COOKIE['ultimaConex'] ?></p><br>
+        <?php endif ?>
+
         <form action="?url=loginAction" method="post">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="passwd" placeholder="Password">
+            <?php if (!isset($_COOKIE['recorda'])) : ?>
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="passwd" placeholder="Password">
+            <?php else : ?>
+                <input type="email" name="email" value="<?= $_COOKIE['emailUser'] ?>">
+                <input type="password" name="passwd" value="<?= $_COOKIE['passwdUser'] ?>">
+            <?php endif ?>
+            <br>
+            <input type="checkbox" id="recorda" name="recorda" value="1">
+            <label for="recorda">Mante la sessio iniciada</label><br><br>
             <button type="submit">Login</button>
         </form>
+        <br>
+        <form action="?url=resetAction" method="post">
+            <button type="submit">Elimina les dades d'inici de sessio</button>
+        </form>
+
+
     </main>
-    
+
 </body>
+
 </html>

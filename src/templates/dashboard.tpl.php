@@ -9,10 +9,13 @@
 </head>
 
 <body>
-    <h1>DASHBOARD</h1>
-    <?php
-    echo '¡Hola ' . $_COOKIE['activeUser'] . ', benvingut al teu dashboard!';
-    ?>
+    <h1><?= $nom; ?></h1>
+    <h4>Hola <?= $_COOKIE['activeUser'] ?>, benvingut al teu dashboard!</h4>
+    <a href="?url=perfil">Gestiona el teu perfil</a>
+    <br><br>
+    <form action="?url=logoutAction" method="post">
+        <button type="submit">TANCAR SESSIO</button>
+    </form>
 </body>
 
 </html>

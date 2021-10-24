@@ -1,4 +1,4 @@
 <?php
 
 require APP.'/lib/render.php';
-echo render('home', []);
+echo render('home', ['nom'=>'HOME']);
