@@ -39,13 +39,16 @@ if (isset($_POST['email']) and isset($_POST['passwd'])) {
                 if (!isset($_COOKIE["passwdUser"])) {
                     setcookie("passwdUser", $rows[0]["contrasenya"], time()+60*60*24*30, "/");
                 }
+                if (!isset($_COOKIE["emailUser"])) {
+                    setcookie("emailUser", $email, time()+60*60*24*90, "/");
+                }
                 
             } else  if(isset($_COOKIE["recorda"]) and !$recordar){
                 //cas en que l'usuari ha volgut recordar les credencials pero despres decideix no tornar-les a guardar
                 setcookie("recorda", null, time()+60*60*24*90, "/");
             }
-            if (!isset($_COOKIE["emailUser"])) {
-                setcookie("emailUser", $rows[0]["email"], time()+60*60*24*30, "/");
+            if (!isset($_SESSION["emailUser"])) {
+                $_SESSION["emailUser"] = $email;
             }
             //enviem l'usuari cap al seu dashboard
             header('location:?url=dashboard');

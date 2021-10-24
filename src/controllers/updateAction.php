@@ -6,7 +6,7 @@ require 'config.php';
 require 'lib/conn.php';
 
 //obtenim el valor del camp "email" que es el que ens permet modificar el valor que nosaltres volem
-$email = $_COOKIE["emailUser"];
+$email = $_SESSION["emailUser"];
 
 //comporvem que l'usuari ens ha enviat dades isset($_POST['nomUpdate'])
 if ($_POST['nomUpdate'] != "") {

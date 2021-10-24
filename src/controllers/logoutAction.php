@@ -15,8 +15,8 @@ if (isset($_COOKIE["recorda"])) {
     if (isset($_COOKIE["emailUser"])) {
         setcookie("emailUser", null, time() + 60 * 60 * 24 * 30, "/");
     }
-    if (isset($_COOKIE["activeUser"])) {
-        setcookie("activeUser", null, time() + 60 * 60 * 24 * 30, "/");
+    if (isset($_SESSION["emailUser"])) {
+        unset($_SESSION["emailUser"]);
     }
 }
 
