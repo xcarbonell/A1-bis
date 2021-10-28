@@ -50,6 +50,9 @@ if (isset($_POST['email']) and isset($_POST['passwd'])) {
             if (!isset($_SESSION["emailUser"])) {
                 $_SESSION["emailUser"] = $email;
             }
+            if (!isset($_SESSION["rolUser"])) {
+                $_SESSION["rolUser"] = $rows[0]["rol"];
+            }
             //enviem l'usuari cap al seu dashboard
             header('location:?url=dashboard');
         } else {

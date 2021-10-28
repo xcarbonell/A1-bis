@@ -3,6 +3,9 @@
 //establecer errores
 //ini_set('display_errors', 'On');
 session_start();
+require 'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable('../');
+$dotenv->load();
 require 'config.php';
 require 'src/router.php';
 

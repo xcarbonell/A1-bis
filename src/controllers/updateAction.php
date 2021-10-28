@@ -8,7 +8,7 @@ require 'lib/conn.php';
 //obtenim el valor del camp "email" que es el que ens permet modificar el valor que nosaltres volem
 $email = $_SESSION["emailUser"];
 
-//comporvem que l'usuari ens ha enviat dades isset($_POST['nomUpdate'])
+//comporvem que l'usuari ens ha enviat dades
 if ($_POST['nomUpdate'] != "") {
 
     try {
