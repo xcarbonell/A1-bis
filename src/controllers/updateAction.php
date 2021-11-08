@@ -34,13 +34,14 @@ if ($_POST['nomUpdate'] != "") {
     try {
         //recollir dades
         $newPasswd = $_POST['passwdUpdate'];
+        $newPasswdHash = password_hash($newPasswd, PASSWORD_DEFAULT);
 
         //connexio a BBDD
         $gdb = getConnection($dsn, $dbuser, $dbpasswd);
 
         //preparacio i execucio sentencia
         $stmt = $gdb->prepare("UPDATE usuaris SET contrasenya=:contrasenya WHERE email=:email");
-        $stmt->execute([":contrasenya" => $newPasswd, ":email" => $email]);
+        $stmt->execute([":contrasenya" => $newPasswdHash, ":email" => $email]);
 
     } catch (PDOException $e) {
         echo $e->getMessage();

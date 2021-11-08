@@ -18,13 +18,17 @@ if (isset($_POST['email']) and isset($_POST['passwd'])) {
         $gdb = getConnection($dsn, $dbuser, $dbpasswd);
 
         //preparacio i execucio sentencia
-        $stmt = $gdb->prepare("SELECT * FROM usuaris WHERE email=? AND contrasenya=?;");
-        $stmt->execute([$email, $password]);
+        $stmt = $gdb->prepare("SELECT * FROM usuaris WHERE email=?;");
+        $stmt->execute([$email]);
 
         //guardem resultats sentencia
         $rows = $stmt->fetchAll();
+
+        //comprovem que la contrasenya es correcta
+        $pwdOK = password_verify($password, $rows[0]['contrasenya']);
+
         //si el resultat no es null, voldra dir que si que existeix l'usuari
-        if ($rows != null) {
+        if ($pwdOK) {
             //guardem el nom de l'usuari en una cookie
             if (!isset($_COOKIE["activeUser"])) {
                 setcookie("activeUser", $rows[0]["nom"], time()+60*60*24*30, "/");
@@ -49,6 +53,9 @@ if (isset($_POST['email']) and isset($_POST['passwd'])) {
             }
             if (!isset($_SESSION["emailUser"])) {
                 $_SESSION["emailUser"] = $email;
+            }
+            if (!isset($_SESSION["idUser"])) {
+                $_SESSION["idUser"] = $rows[0]["id"];
             }
             if (!isset($_SESSION["rolUser"])) {
                 $_SESSION["rolUser"] = $rows[0]["rol"];

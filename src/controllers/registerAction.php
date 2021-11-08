@@ -10,7 +10,7 @@ if (isset($_POST['email']) and isset($_POST['passwd']) and isset($_POST['nom']) 
     try {
         //recullo dades
         $email = $_POST['email'];
-        $password = $_POST['passwd'];
+        $password = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
         $nom = $_POST['nom'];
         $rol = $_POST['rol'];
 
