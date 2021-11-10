@@ -3,6 +3,7 @@
 //establecer errores
 //ini_set('display_errors', 'On');
 session_start();
+//include 'style.css';
 require 'vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();

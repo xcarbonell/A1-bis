@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
             <form action="?url=resetAction" method="post">
                 <button type="submit">Elimina les dades d'inici de sessio</button>
             </form>
-        </article>  
+        </article>
     </section>
 
 </body>

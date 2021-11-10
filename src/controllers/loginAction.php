@@ -41,7 +41,7 @@ if (isset($_POST['email']) and isset($_POST['passwd'])) {
             if (!isset($_COOKIE["recorda"]) and $recordar) {
                 setcookie("recorda", true, time()+60*60*24*90, "/");
                 if (!isset($_COOKIE["passwdUser"])) {
-                    setcookie("passwdUser", $rows[0]["contrasenya"], time()+60*60*24*30, "/");
+                    setcookie("passwdUser", $password, time()+60*60*24*30, "/");
                 }
                 if (!isset($_COOKIE["emailUser"])) {
                     setcookie("emailUser", $email, time()+60*60*24*90, "/");
